@@ -3,11 +3,11 @@
 import { ContactsCollection } from '../db/models/contact.js';
 
 export const getAllStudents = async () => {
-  const students = await ContactsCollection.find();
-  return students;
+  const contacts = await ContactsCollection.find();
+  return contacts;
 };
 
-export const getStudentById = async (studentId) => {
-  const student = await ContactsCollection.findById(studentId);
-  return student;
+export const getStudentById = async (contactId) => {
+  const contact = await ContactsCollection.findById(contactId);
+  return contact;
 };
