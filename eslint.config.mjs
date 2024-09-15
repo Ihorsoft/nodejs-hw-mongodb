@@ -1,3 +1,5 @@
+// eslint.config.mjs (.js/.cjs)
+
 import globals from 'globals';
 import pluginJs from '@eslint/js';
 
