@@ -26,16 +26,16 @@ export const createContactSchema = Joi.object({
     'any.required': 'Username is required',
   }),
   email: Joi.string().email(),
-  contactType: Joi.string().valid('home', 'personal', 'add'),
-  phoneNumber: Joi.string().min(2).max(13).required(),
+  contactType: Joi.string().valid('home', 'personal', 'work'),
+  phoneNumber: Joi.string().min(3).max(30).required(),
   isFavorite: Joi.boolean(),
 });
 
 export const updateContactSchema = Joi.object({
   name: Joi.string().min(3).max(30),
   email: Joi.string().email(),
-  contactType: Joi.string().valid('home', 'personal', 'add'),
-  phoneNumber: Joi.string().min(2).max(13),
+  contactType: Joi.string().valid('home', 'personal', 'work'),
+  phoneNumber: Joi.string().min(3).max(30),
   isFavorite: Joi.boolean(),
 });
 

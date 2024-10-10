@@ -63,7 +63,6 @@ export const getContactById = async (contactId) => {
 };
 
 export const createContact = async (payload) => {
-  console.log('before ', payload);
   if (!payload) {
     payload = {
       name: faker.person.fullName(),
@@ -73,7 +72,6 @@ export const createContact = async (payload) => {
       contactType: 'personal',
     };
   }
-  console.log('after:', payload);
 
   const contact = await ContactsCollection.create(
     /*  (payload = {
