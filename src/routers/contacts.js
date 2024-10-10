@@ -66,7 +66,11 @@ router.post(
   //validateBody(createContactSchema),
   ctrlWrapper(createContactController),
 ); */
-router.delete('/contacts/:contactId', ctrlWrapper(deleteContactController));
+router.delete(
+  '/contacts/:contactId',
+  isValidId,
+  ctrlWrapper(deleteContactController),
+);
 router.put(
   '/contacts/:contactId',
   isValidId,
