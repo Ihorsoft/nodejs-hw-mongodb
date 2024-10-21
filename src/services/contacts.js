@@ -7,20 +7,23 @@ import { calculatePaginationData } from '../utils/calculatePaginationData.js';
 import { SORT_ORDER } from '../constants/index.js';
 //import { createDefaultContact } from '../utils/createFakeContact.js';
 
-export const getAllContacts = async ({
-  page = 1,
-  perPage = 10,
-  sortOrder = SORT_ORDER.ASC,
-  sortBy = '_id',
-  filter = {},
-}) => {
+export const getAllContacts = async (
+  {
+    page = 1,
+    perPage = 10,
+    sortOrder = SORT_ORDER.ASC,
+    sortBy = '_id',
+    filter = {},
+  },
+  user,
+) => {
   /* const contacts = await ContactsCollection.find();
   return contacts; */
-
+  console.log('user for all contact', user);
   const limit = perPage;
   const skip = (page - 1) * perPage;
 
-  const contactsQuery = ContactsCollection.find();
+  const contactsQuery = ContactsCollection.find({ userId: user });
 
   /* if (filter.gender) {
     contactsQuery.where('gender').equals(filter.gender);
@@ -38,7 +41,7 @@ export const getAllContacts = async ({
     contactsQuery.where('avgMark').gte(filter.minAvgMark);
   } */
 
-  const contactsCount = await ContactsCollection.find()
+  const contactsCount = await ContactsCollection.find({ userId: user })
     .merge(contactsQuery)
     .countDocuments();
 
@@ -56,34 +59,21 @@ export const getAllContacts = async ({
   };
 };
 
-export const getContactById = async (contactId) => {
+export const getContactById = async (contactId, user) => {
   const contact = await ContactsCollection.findById(contactId);
 
-  return contact;
+  if (contact.userId.toString() === user._id.toString()) {
+    return contact;
+  } else {
+    return;
+  }
 };
 
-export const createContact = async (payload) => {
-  if (!payload) {
-    payload = {
-      name: faker.person.fullName(),
-      phoneNumber: faker.phone.number(),
-      email: faker.internet.email(),
-      isFavourite: false,
-      contactType: 'personal',
-    };
-  }
-
-  const contact = await ContactsCollection.create(
-    /*  (payload = {
-      name: faker.person.fullName(),
-      phoneNumber: faker.phone.number(),
-      email: faker.internet.email(),
-      isFavourite: false,
-      contactType: 'personal',
-    }), */
-
-    payload,
-  );
+export const createContact = async (payload, user) => {
+  const contact = await ContactsCollection.create({
+    ...payload,
+    userId: user._id,
+  });
   return contact;
 };
 

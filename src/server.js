@@ -3,9 +3,12 @@
 import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import { env } from './utils/env.js';
 import { getAllContacts, getContactById } from './services/contacts.js';
-import contactsRouter from './routers/contacts.js';
+//import contactsRouter from './routers/contacts.js';
+import router from './routers/index.js';
+
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
 
@@ -37,6 +40,7 @@ export const setupServer = () => {
   app.use(express.json());
 
   app.use(cors());
+  app.use(cookieParser());
 
   app.get('/', (req, res) => {
     res.json({
@@ -73,7 +77,8 @@ export const setupServer = () => {
     });
   }); */
 
-  app.use(contactsRouter);
+  // app.use(contactsRouter);
+  app.use(router);
 
   //  не підішов жоден маршрут . останній middleware  status 404
   /*   app.use('*', (req, res, next) => {
