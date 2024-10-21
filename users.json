@@ -1,0 +1,23 @@
+[
+  {
+    "name": "User1",
+    "email": "oleh1@example.com",
+    "password": "dry4yws6yu",
+    "createdAt": "2024-05-08T16:12:14.954151",
+    "updatedAt": "2024-05-08T16:12:14.954158"
+  },
+  {
+    "name": "user2",
+    "email": "user2email@gmail.com",
+    "password": "dry4yws4yu",
+    "createdAt": "2024-05-08T16:12:14.954163",
+    "updatedAt": "2024-05-08T16:12:14.954164"
+  },
+  {
+    "name": "user3",
+    "email": "user3email@gmail.com",
+    "password": "dry4yws9yu",
+    "createdAt": "2024-05-08T16:12:14.954208",
+    "updatedAt": "2024-05-08T16:12:14.954211"
+  }
+]
