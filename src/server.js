@@ -17,6 +17,7 @@ import { notFoundHandler } from './middlewares/notFoundHandler.js';
 // const PORT = Number(process.env.PORT);
 
 const PORT = env('PORT', '3000');
+//const PORT = env('PORT');
 
 export const setupServer = () => {
   const app = express();
