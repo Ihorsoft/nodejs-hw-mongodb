@@ -4,8 +4,9 @@ import express from 'express';
 import pino from 'pino-http';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import { UPLOAD_DIR } from './constants/index.js';
 import { env } from './utils/env.js';
-import { getAllContacts, getContactById } from './services/contacts.js';
+//import { getAllContacts, getContactById } from './services/contacts.js';
 //import contactsRouter from './routers/contacts.js';
 import router from './routers/index.js';
 
@@ -48,35 +49,7 @@ export const setupServer = () => {
     });
   });
 
-  // collection contacts
-
-  /*  app.get('/contacts', async (req, res) => {
-    const contacts = await getAllStudents();
-    res.status(200).json({
-      status: 200,
-      message: 'Successfully found contacts!',
-      data: contacts,
-    });
-  });
-
-  app.get('/contacts/:contactId', async (req, res, next) => {
-    const { contactId } = req.params;
-    const contact = await getStudentById(contactId);
-
-    if (!contact) {
-      res.status(404).json({
-        message: 'Contact not found',
-      });
-      return;
-    }
-
-    res.status(200).json({
-      status: 200,
-      message: `Successfully found contact with id ${contactId}!`,
-      data: contact,
-    });
-  }); */
-
+  app.use('/uploads', express.static(UPLOAD_DIR));
   // app.use(contactsRouter);
   app.use(router);
 
