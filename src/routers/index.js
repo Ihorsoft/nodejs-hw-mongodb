@@ -8,5 +8,6 @@ const router = Router();
 
 router.use('/contacts', contactsRouter);
 router.use('/auth', authRouter);
+router.use('/', authRouter);
 
 export default router;
