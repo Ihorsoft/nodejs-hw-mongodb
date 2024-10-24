@@ -15,39 +15,41 @@ requestBody:
         required:
           - name
           - phoneNumber
-          - email
-          - isFavourite
-          - contactType
-
         properties:
+          _id:
+            description: "Contact's id"
+            type: string
+            example: 65e4decdd286b30065d54af9
           name:
-            description: "Student's name"
+            description: "Contact's name"
             type: string
             example: 'John Doe'
-          age:
-            description: "Student's age"
-            type: number
-            example: 12
-          gender:
-            description: "Student's age"
+          phoneNumber:
+            description: "Contact's phone number"
             type: string
-            enum: ['male', 'female', 'other']
-          avgMark:
-            description: "Student's average mark. Should be between 1 and 12"
-            type: number
-            example: 9.7
-          onDuty:
-            description: 'Whether is student on duty'
+            example: '0639496633'
+          email:
+            description: 'email address'
+            type: string
+            example: offise@gmail.com
+          isFavourite:
+            description: "Contact's favourite . Should be true or false"
             type: boolean
             example: false
-          parentId:
-            description: "Student's parent id"
+          contactType:
+            description: 'Whether is student on duty'
+            type: string
+            enum: ['personal', 'houme', 'work']
+            example: 'personal'
+          userId:
+            description: 'Id of user  owners of collection with  thith contact'
             type: string
             example: 65e4decdd286b30065d54af9
           photo:
-            description: "Student's photo"
+            description: 'Link to contacts photo'
             type: string
-            format: binary
+            example: https://res.cloudinary.com/uqwgdu/image/upload/image.png
+
 responses:
   '201':
     description: Creates a contact
@@ -69,5 +71,3 @@ responses:
             data:
               type: object
               $ref: '../../components/schemas/contact.yaml'
-  '401':
-    $ref: '../../components/responses/401.yaml'
