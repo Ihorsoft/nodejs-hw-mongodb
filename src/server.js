@@ -12,6 +12,7 @@ import router from './routers/index.js';
 
 import { errorHandler } from './middlewares/errorHandler.js';
 import { notFoundHandler } from './middlewares/notFoundHandler.js';
+import { swaggerDocs } from './middlewares/swaggerDocs.js';
 
 // Читаємо змінну оточення PORT
 // const PORT = Number(process.env.PORT);
@@ -51,6 +52,7 @@ export const setupServer = () => {
   });
 
   app.use('/uploads', express.static(UPLOAD_DIR));
+  app.use('/api-docs', swaggerDocs());
   // app.use(contactsRouter);
   app.use(router);
 
